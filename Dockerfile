@@ -1,21 +1,34 @@
-FROM jboss/base-jdk:8
-
-MAINTAINER Rob
-
-COPY   jboss-eap-6.4.0.zip /tmp/
-
-USER root 
+##### pull image  jboss/base-jdk:8
 
 
-RUN yum install -y unzip \
-    && unzip /tmp/jboss-eap-6.4.0.zip -d /opt/rh \
-    && export EAP_HOME=/opt/rh/jboss-eap-6.4 \
-    && /opt/rh/jboss-eap-6.4/bin/add-user.sh admin Snet.1234TECH --silent
+
+##### Add name or author 
 
 
-EXPOSE 8089 9990 9999
+
+##### Add enviroment version for jboss version , envirmeont for home directory, enviroment for EAP
 
 
-WORKDIR  /opt/rh/jboss-eap-6.4/bin
+#### Copy jboss zip to the tmp directory 
 
-ENTRYPOINT ["./standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
+
+
+##### Add user 
+
+
+
+#### unzip jboss file to RH_HOME direcotory , export EAP_HOME , and create jboss user
+
+
+
+
+####### expose ports 8080 9990 9999
+
+####### switch to the working directory of the jboss execution $HOME
+
+###### Command to execute when the image runs in a container ## standalone.sh,-b,0.0.0.0, -bmanagement,0.0.0.0
+
+
+
+
